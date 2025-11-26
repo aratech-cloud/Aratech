@@ -1,4 +1,4 @@
-name: Deploy to CloudPanel with SFTP (SSH)
+name: Deploy to CloudPanel with SSH
 
 on:
   push:
@@ -11,14 +11,15 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
-      - name: Deploy to Server
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.6
+      - name: Deploy to Server via SSH
+        uses: easingthemes/ssh-deploy@v4
         with:
-          username: ${{ secrets.SFTP_USERNAME }}
-          server: ${{ secrets.SFTP_HOST }}
-          password: ${{ secrets.SFTP_PASSWORD }}
-          local_path: "./"
-          remote_path: "/home/aratechnology/htdocs/aratechnology.id"
-          delete_remote_files: false
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_KEY }}
+          REMOTE_HOST: ${{ secrets.SSH_HOST }}
+          REMOTE_USER: ${{ secrets.SSH_USER }}
+          SOURCE: "./"
+          TARGET: "/var/www/Aratech"
+          SCRIPT_AFTER: |
+            git pull
