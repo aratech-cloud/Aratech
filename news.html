@@ -177,16 +177,12 @@
     <script src="assets/js/main.js"></script>
 
     <script>
-      // Ganti URL ini saat testing lokal
       const API_URL = "http://127.0.0.1:5000/api/news/cyber";
-      // Ganti URL ini saat deployment di CloudPanel (direkomendasikan)
-      // const API_URL = "/api/news/cyber";
 
       const ITEMS_PER_PAGE = 5;
       let currentPage = 1;
       let allArticles = [];
 
-      // --- FUNGSI UTAMA UNTUK MENGAMBIL DATA DARI API ---
       function fetchNews() {
         const container = document.getElementById("news-list-container");
         const paginationContainer = document.getElementById(
