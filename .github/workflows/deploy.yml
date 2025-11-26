@@ -17,4 +17,6 @@ jobs:
           username: ${{ secrets.REMOTE_USER }}
           password: ${{ secrets.REMOTE_PASSWORD }}
           script_path: ${{ secrets.REMOTE_PATH }}
-          script: git pull
+          script: |
+            cd ${{ secrets.REMOTE_PATH }}
+            git pull
