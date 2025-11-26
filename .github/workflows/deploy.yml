@@ -20,5 +20,5 @@ jobs:
           server: ${{ secrets.SFTP_HOST }}
           password: ${{ secrets.SFTP_PASSWORD }}
           local_path: "./"
-          remote_path: ${{ secrets.REMOTE_PATH }}
+          remote_path: ${{ env.REMOTE_PATH }}
           delete_remote_files: false
