@@ -1,4 +1,4 @@
-name: Deploy to CloudPanel with SFTP (SSH)
+name: Deploy to Server with SSH
 
 on:
   push:
@@ -6,19 +6,14 @@ on:
       - main
 
 jobs:
-  deploy:
+  build:
+    name: Build
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Deploy to Server
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.6
+      - name: Deploy to server
+        uses: appleboy/ssh-action@v1
         with:
+          host: ${{ secrets.REMOTE_HOST }}
           username: ${{ secrets.REMOTE_USER }}
-          server: ${{ secrets.REMOTE_HOST }}
-          ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-          local_path: "./"
-          remote_path: ${{ secrets.REMOTE_TARGET }}
-          sftp_only: true
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: git pull
