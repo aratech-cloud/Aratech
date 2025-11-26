@@ -16,4 +16,5 @@ jobs:
           host: ${{ secrets.REMOTE_HOST }}
           username: ${{ secrets.REMOTE_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script_path: ${{ secrets.REMOTE_PATH }}
           script: git pull
