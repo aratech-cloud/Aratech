@@ -17,5 +17,5 @@ jobs:
           username: ${{ secrets.REMOTE_USER }}
           password: ${{ secrets.REMOTE_PASSWORD }}
           script: |
-            cd ${{ secrets.REMOTE_PATH }}
+            cd /var/www/Aratech
             pwd
