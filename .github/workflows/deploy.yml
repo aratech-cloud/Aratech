@@ -9,6 +9,9 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    env:
+      REMOTE_PATH: ${{ secrets.REMOTE_TARGET }}
+
     steps:
       - name: Deploy to server
         uses: appleboy/ssh-action@v1
@@ -17,5 +20,5 @@ jobs:
           username: ${{ secrets.REMOTE_USER }}
           password: ${{ secrets.REMOTE_PASSWORD }}
           script: |
-            cd /var/www/Aratech
-            pwd
+            cd "$REMOTE_PATH"
+            git pull
